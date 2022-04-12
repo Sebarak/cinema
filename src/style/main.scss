@@ -1,3 +1,4 @@
-body{
-  background-color: black;
-}
+@import "generic/reset";
+@import "generic/variables";
+@import 'generic/global';
+@import "landing/landing";

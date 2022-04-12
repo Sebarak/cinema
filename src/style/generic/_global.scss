@@ -1,0 +1,25 @@
+@mixin tablet{
+  @media screen and (min-width: $tablet-width) and (max-width: $desktop-width){
+    @content;
+  }
+}
+
+@mixin desktop{
+  @media screen and (min-width: $desktop-width + 1px){
+    @content;
+  }
+}
+body {
+  background-color: #000;
+
+  .container {
+    border: 5px solid black;
+    width: fit-content;
+    margin: 10px auto;
+    padding: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
