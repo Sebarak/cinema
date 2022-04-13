@@ -1,24 +1,35 @@
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
+import banner from '../images/banner.png';
 
 const Banner = () => {
-    useEffect(() =>{
-        const carousel = document.querySelector('.banner_carousel');
-        let rot = -120;
-        const IntervalId = setInterval(()=>{
-            carousel.style.transform = `translateZ(-180px) rotateY(${rot}deg)`;
-            rot -= 120;
-        },8000);
+    const [distance,setDistance] = useState(1);
+    const [direction, setDirection] = useState('right');
 
-        return () => clearInterval(IntervalId);
-    },[])
+    useEffect(() =>{
+        const banner = document.querySelector('.banner > img');
+
+        const TimeoutId = setTimeout(()=>{
+            banner.style.transform = `translateX(-${distance}px)`;
+            if (direction === 'right'){
+                setDistance(prev => prev + 1);
+            }else{
+                setDistance(prev => prev - 1);
+            }
+            if (distance === 160){
+                setDirection('left');
+            }
+            if (distance === 0){
+                setDirection('right');
+            }
+        },200)
+
+        return () => clearInterval(TimeoutId);
+    },[distance]);
 
     return(
         <section className='banner'>
-            <div className="banner_carousel">
-                <div className='banner_carousel_section'>1</div>
-                <div className='banner_carousel_section'>2</div>
-                <div className='banner_carousel_section'>3</div>
-            </div>
+            <img src={banner} alt="Movies"/>
+            <div className='banner_curtain'>CinemaX</div>
         </section>
     )
 }
