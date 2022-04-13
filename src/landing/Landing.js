@@ -1,6 +1,6 @@
 import {Banner} from "./Banner";
 import {Search} from "./Search";
-import {Date} from "./Date";
+import {Dates} from "./Dates";
 import {Movies} from "./Movies";
 
 const Landing = () =>{
@@ -9,7 +9,7 @@ const Landing = () =>{
         <>
             <Banner />
             <Search />
-            <Date />
+            <Dates />
             <Movies />
         </>
     )

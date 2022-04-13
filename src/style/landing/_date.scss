@@ -1,0 +1,15 @@
+.date{
+
+  transform: translateY(-55px);
+  &_holder {
+    transform: translateX(-5px);
+
+    input[list='dates']{
+      border: none;
+      outline: none;
+      padding: 10px;
+      text-align: center;
+      font-family: $font;
+    }
+  }
+}
