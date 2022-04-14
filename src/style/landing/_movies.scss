@@ -1,0 +1,38 @@
+.movies{
+  transform: translateY(-30px);
+  flex-direction: column;
+  .movie{
+    width: 80%;
+    height: fit-content;
+    border: 2px solid red;
+    margin-bottom: 10px;
+    &:last-of-type{
+      margin-bottom: 0;
+    }
+
+    .date_section{
+      color: $bonus-color;
+    }
+
+    .movies_holder{
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .mov{
+        border: #4e4450 2px solid;
+        margin: 5px 0;
+        width: 80%;
+
+        &:first-of-type{
+          margin-top: 10px;
+        }
+
+        &:last-of-type{
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+}

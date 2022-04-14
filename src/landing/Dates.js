@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 
-const Dates = () => {
+const Dates = ({setDate}) => {
     const [dates,setDates] = useState([]);
     const [day,setDay] = useState([]);
     useEffect(()=>{
@@ -36,6 +36,7 @@ const Dates = () => {
                     break;
             }
         }
+        setDate(arrayDates);
         setDay(arrayDays);
         setDates(arrayDates);
     },[])
