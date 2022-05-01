@@ -1,38 +1,29 @@
 .movies{
   transform: translateY(-30px);
   flex-direction: column;
+
   .movie{
     width: 80%;
-    height: fit-content;
-    border: 2px solid red;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
+    height: 305px;
+    box-shadow: 0 0 50px -30px $main-color;
+    border-radius: 10px;
+    overflow-y: hidden;
+    color: white;
+
     &:last-of-type{
       margin-bottom: 0;
     }
 
-    .date_section{
-      color: $bonus-color;
+    &_poster{
+      width: 100%;
     }
 
-    .movies_holder{
-
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      .mov{
-        border: #4e4450 2px solid;
-        margin: 5px 0;
-        width: 80%;
-
-        &:first-of-type{
-          margin-top: 10px;
-        }
-
-        &:last-of-type{
-          margin-bottom: 10px;
-        }
-      }
+    &_description{
+      text-align: center;
+      background-color: $main-hover-color;
+      padding: 5px;
+      border-radius: 20px 20px 0 0;
     }
   }
 }

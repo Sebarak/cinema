@@ -1,28 +1,16 @@
 import {useEffect, useState} from "react";
 
-const Movies = ({dates}) =>{
-    const [movie,setMovie] = useState([]);
-
-    useEffect(()=>{
-        setTimeout(()=>{
-            const movies = [{movies:[1,2,3]},{movies:[1,2,3]},{movies:[1,2,3,4,5]},{movies:[1,2,3,4]},{movies:[1,2,3]},{movies:[1,2]},{movies:[1,2,3,4,5,6]}]
-            movies.forEach((movie,index) => {
-                movie.date = dates[index];
-            })
-            setMovie(movies);
-        },1000);
-    },[movie])
-
+const Movies = ({dates,moviesList}) =>{
+    const IMG_URL = 'https://image.tmdb.org/t/p/w500'
 
     return(
-        <section className='container movies'>
-                {movie.map((date,index)=>(
-                <div className='movie' key={index}>
-                    <h2 className='date_section'>{date.date}</h2>
-                    <div className='movies_holder'>
-                        {date.movies.map(mov=>(
-                            <div className='mov'>{mov}</div>
-                        ))}
+        <section className="container movies">
+            {moviesList.map(({poster_path, title, overview}) => (
+                <div className='movie' key={title}>
+                    <img src={IMG_URL + poster_path} alt={title} className='movie_poster'/>
+                    <div className='movie_description'>
+                        <h2 className='movie_description_title'>{title}</h2>
+                        <p className='movie_description_overview'>{overview}</p>
                     </div>
                 </div>
             ))}
