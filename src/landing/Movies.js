@@ -1,19 +1,58 @@
 import {useEffect, useState} from "react";
 
-const Movies = ({dates,moviesList}) =>{
-    const IMG_URL = 'https://image.tmdb.org/t/p/w500'
+const Movies = ({dates,moviesList,setSelected}) =>{
+    const IMG_URL = 'https://image.tmdb.org/t/p/w500';
+
+    const Parallax = (event) => {
+        const movieHolderBound = event.currentTarget.getBoundingClientRect();
+
+        let w = movieHolderBound.width/2;
+        let h = movieHolderBound.height/2;
+        let mousePosX = event.clientX;
+        let mousePosY = event.clientY;
+
+        let depth = `${-(mousePosX - w) * 0.01}%, ${-(mousePosY - h) * 0.01}%`;
+
+        event.currentTarget.firstElementChild.style.transform = `translate(${depth})`;
+    }
+
+    const ShowDesc = (event) => {
+        event.currentTarget.nextElementSibling.classList.toggle('show');
+    }
+
+    const Hover = (event, px) => {
+        event.currentTarget.firstElementChild.style.filter = `blur(${px})`;
+    }
+
+    const Click = ({poster_path, title, overview, vote_average, backdrop_path, release_date, original_language}) => {
+        setSelected({poster_path, title, overview, vote_average, backdrop_path, release_date, original_language});
+        document.body.style.overflow = 'hidden'
+    }
 
     return(
         <section className="container movies">
-            {moviesList.map(({poster_path, title, overview}) => (
-                <div className='movie' key={title}>
-                    <img src={IMG_URL + poster_path} alt={title} className='movie_poster'/>
-                    <div className='movie_description'>
-                        <h2 className='movie_description_title'>{title}</h2>
-                        <p className='movie_description_overview'>{overview}</p>
-                    </div>
-                </div>
-            ))}
+            {moviesList.map(({poster_path, title, overview, vote_average, backdrop_path, release_date, original_language}) => {
+                let color
+                if (vote_average >= 7.8 && vote_average <= 10) {
+                    color = {color: 'green'}
+                } else if(vote_average >= 4.5 && vote_average < 7.8){
+                    color = {color: 'orange'}
+                } else{
+                    color = {color: 'red'}
+                }
+                return(
+                        <div className='movie' key={title} onClick={() => {Click({poster_path, title, overview, vote_average, backdrop_path, release_date, original_language})}} onMouseEnter={e => {Hover(e, '2px')}}
+                             onMouseLeave={e => {Hover(e, 0);e.currentTarget.lastElementChild.classList.remove('show')}}
+                             onMouseMove={e => {Parallax(e)}}>
+                            <img src={IMG_URL + poster_path} alt={title} className='movie_poster'/>
+                            <div className='movie_vote'><span style={color}>{vote_average}</span>/10</div>
+                            <span className="movie_info" onClick={e => {ShowDesc(e)}}>?</span>
+                            <div className='movie_description'>
+                                <p className='movie_description_overview'>{overview}</p>
+                            </div>
+                        </div>
+                )
+            })}
         </section>
     )
 }

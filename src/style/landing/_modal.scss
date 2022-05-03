@@ -1,0 +1,53 @@
+.modal{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: $main-color;
+
+  &_close{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width:  30px;
+    height: 30px;
+    border-radius: 50%;
+    font-family: $font;
+    font-weight: 800;
+    font-size: 1.2rem;
+    line-height: 0;
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover{
+      cursor: pointer;
+      transform: scale(1.1);
+    }
+  }
+
+  &_banner{
+    width: 100%;
+    border-bottom: 1px dashed white;
+  }
+
+  &_poster{
+    display: none;
+  }
+
+  &_info{
+    color: white;
+    font-family: $font;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-bottom: 1px dashed white;
+
+    &_title{
+      margin: 15px 0;
+      line-height: 1.2rem;
+    }
+  }
+}
