@@ -24,9 +24,10 @@ const Movies = ({dates,moviesList,setSelected}) =>{
         event.currentTarget.firstElementChild.style.filter = `blur(${px})`;
     }
 
-    const Click = ({poster_path, title, overview, vote_average, backdrop_path, release_date, original_language}) => {
-        setSelected({poster_path, title, overview, vote_average, backdrop_path, release_date, original_language});
-        document.body.style.overflow = 'hidden'
+    const Click = (event,{poster_path, title, overview, vote_average, backdrop_path, release_date, original_language}) => {
+        event.preventDefault();
+            setSelected({poster_path, title, overview, vote_average, backdrop_path, release_date, original_language});
+            document.body.style.overflow = 'hidden'
     }
 
     return(
@@ -41,10 +42,10 @@ const Movies = ({dates,moviesList,setSelected}) =>{
                     color = {color: 'red'}
                 }
                 return(
-                        <div className='movie' key={title} onClick={() => {Click({poster_path, title, overview, vote_average, backdrop_path, release_date, original_language})}} onMouseEnter={e => {Hover(e, '2px')}}
+                        <div className='movie' key={title} onMouseEnter={e => {Hover(e, '2px')}}
                              onMouseLeave={e => {Hover(e, 0);e.currentTarget.lastElementChild.classList.remove('show')}}
                              onMouseMove={e => {Parallax(e)}}>
-                            <img src={IMG_URL + poster_path} alt={title} className='movie_poster'/>
+                            <img src={IMG_URL + poster_path} onClick={(e) => {Click(e,{poster_path, title, overview, vote_average, backdrop_path, release_date, original_language})}} alt={title} className='movie_poster'/>
                             <div className='movie_vote'><span style={color}>{vote_average}</span>/10</div>
                             <span className="movie_info" onClick={e => {ShowDesc(e)}}>?</span>
                             <div className='movie_description'>

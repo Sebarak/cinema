@@ -59,6 +59,7 @@
       font-family: $font;
       cursor: pointer;
       transition: transform .2s ease-in-out;
+      z-index: 2;
 
       &:hover{
         transform: scale(1.1, 1.2);
@@ -67,6 +68,7 @@
 
     &_poster{
       width: 115%;
+      height: 110%;
       transition: filter .5s linear, transform .1s linear;
 
       &:hover{
