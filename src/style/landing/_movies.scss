@@ -70,6 +70,7 @@
       width: 115%;
       height: 110%;
       transition: filter .5s linear, transform .1s linear;
+      transform-style: preserve-3d;
 
       &:hover{
         cursor: pointer;

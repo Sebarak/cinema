@@ -10,9 +10,7 @@ const App = () => {
  useEffect(() =>{
   fetch(API_URL)
       .then(res => res.json())
-      .then(data => {
-       setMoviesList(data.results);
-       console.log(data.results)});
+      .then(data => setMoviesList(data.results))
  },[])
 
 
