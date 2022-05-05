@@ -3,12 +3,21 @@
   transform: translateY(-55px);
   &_holder {
 
-    input[list='dates']{
+    .day{
       border: none;
       outline: none;
       padding: 10px;
       text-align: center;
       font-family: $font;
+      font-weight: 800;
+      cursor: pointer;
+      color: $main-color;
+      background-color: transparent;
+
+      &_option{
+        font-weight: 800;
+        background-color: black;
+      }
     }
   }
 }

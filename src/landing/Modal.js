@@ -30,7 +30,14 @@ const Modal = ({modal, setModal, selectedMovie, movies, dates}) => {
                 </div>
                 <div className='modal_performance'>
                     {movies.map((day,index) => {
-                        return(
+                        let found = false;
+                        for(let i = 0; i < day.movies.length; i++) {
+                            if (day.movies[i].title === selectedMovie.title) {
+                                found = true;
+                                break;
+                            }
+                        }
+                        if (found) return(
                             <div key={index} className='modal_performance_day'>
                                 {dates[day.id]}
                                     {day.movies.map((movie,index)=>{if (movie.title === selectedMovie.title){

@@ -1,5 +1,4 @@
 import {Banner} from "./Banner";
-import {Search} from "./Search";
 import {Dates} from "./Dates";
 import {Movies} from "./Movies";
 import {useEffect, useState} from "react";
@@ -10,6 +9,7 @@ const Landing = ({moviesList}) =>{
     const [isModal, setModal] = useState(false);
     const [selectedMovie,setSelected] = useState({});
     const [movies, setMovies] = useState([]);
+    const [searchedDay,setSearchedDay] = useState('');
 
     const Draw = (how,array,max,min) => {
         how = Math.floor(Math.random() * (max - min + 1) + min);
@@ -30,12 +30,12 @@ const Landing = ({moviesList}) =>{
         for (let i = 0;i < 7; i++){
             const moviesArray = [];
             moviesList.forEach(movie => {
-                let howMany
+                let howMany = 0
                 const hours = []
                 if (movie.vote_average >= 7.8 && movie.vote_average <= 10) {
                     Draw(howMany, hours, 5, 3);
                 } else if (movie.vote_average >= 4.5 && movie.vote_average < 7.8) {
-                    Draw(howMany, hours, 3, 1);
+                    Draw(howMany, hours, 3, 0);
                 } else {
                     Draw(howMany, hours, 1, 0);
                 }
@@ -50,9 +50,8 @@ const Landing = ({moviesList}) =>{
     return(
         <>
             <Banner />
-            <Search />
-            <Dates setDate={setDate}/>
-            <Movies  dates={dates} moviesList={moviesList} setSelected={setSelected}/>
+            <Dates setDate={setDate} setSearchedDay={setSearchedDay} searchedDay={searchedDay}/>
+            <Movies  dates={dates} moviesList={moviesList} setSelected={setSelected} searchedDay={searchedDay}/>
             <Modal  modal={isModal} setModal={setModal} selectedMovie={selectedMovie} movies={movies} dates={dates}/>
         </>
     )

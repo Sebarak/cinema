@@ -1,8 +1,9 @@
 import {useEffect, useState} from "react";
 
-const Dates = ({setDate}) => {
+const Dates = ({setDate, setSearchedDay, searchedDay}) => {
     const [dates,setDates] = useState([]);
     const [day,setDay] = useState([]);
+
     useEffect(()=>{
         const today = new Date();
         const arrayDates = [];
@@ -31,7 +32,7 @@ const Dates = ({setDate}) => {
                 case 6:
                     arrayDays.push('Saturday');
                     break;
-                case 0:
+                default:
                     arrayDays.push('Sunday');
                     break;
             }
@@ -40,16 +41,16 @@ const Dates = ({setDate}) => {
         setDay(arrayDays);
         setDates(arrayDates);
     },[])
+
     return(
         <section className='container date'>
             <div className='date_holder'>
-            <input list='dates' placeholder='00/00/0000'/>
-            <datalist id='dates'>
-                {dates.map((date,index) => (
-                    <option key={index} value={date}>({day[index]})</option>
-                ))
-                }
-            </datalist>
+                <select className='day' value={searchedDay} onChange={e => {setSearchedDay(e.target.value)}}>
+                    <option className='day_option' value=''>--Select--</option>
+                    {dates.map((date,index) => (
+                            <option className='day_option' key={index} value={date}>{date} ({day[index]})</option>
+                        ))}
+                </select>
             </div>
         </section>
     )
