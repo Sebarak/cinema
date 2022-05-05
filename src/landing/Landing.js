@@ -51,7 +51,7 @@ const Landing = ({moviesList}) =>{
         <>
             <Banner />
             <Dates setDate={setDate} setSearchedDay={setSearchedDay} searchedDay={searchedDay}/>
-            <Movies  dates={dates} moviesList={moviesList} setSelected={setSelected} searchedDay={searchedDay}/>
+            <Movies  dates={dates} moviesList={moviesList} setSelected={setSelected} searchedDay={searchedDay} movies={movies}/>
             <Modal  modal={isModal} setModal={setModal} selectedMovie={selectedMovie} movies={movies} dates={dates}/>
         </>
     )

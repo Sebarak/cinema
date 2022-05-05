@@ -48,7 +48,7 @@ const Dates = ({setDate, setSearchedDay, searchedDay}) => {
                 <select className='day' value={searchedDay} onChange={e => {setSearchedDay(e.target.value)}}>
                     <option className='day_option' value=''>--Select--</option>
                     {dates.map((date,index) => (
-                            <option className='day_option' key={index} value={date}>{date} ({day[index]})</option>
+                            <option className='day_option' key={index} value={index}>{date} ({day[index]})</option>
                         ))}
                 </select>
             </div>

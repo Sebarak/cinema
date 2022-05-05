@@ -12,11 +12,13 @@
       font-weight: 800;
       cursor: pointer;
       color: $main-color;
-      background-color: transparent;
+      background-color: $background-color;
+      appearance: none;
 
       &_option{
         font-weight: 800;
-        background-color: black;
+        background-color: $background-color;
+        padding: 5px;
       }
     }
   }

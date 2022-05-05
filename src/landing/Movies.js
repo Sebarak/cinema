@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 
-const Movies = ({dates,moviesList,setSelected}) =>{
+const Movies = ({dates,moviesList,setSelected,searchedDay, movies}) =>{
     const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
     const Parallax = (event) => {
@@ -30,7 +30,7 @@ const Movies = ({dates,moviesList,setSelected}) =>{
             document.body.style.overflow = 'hidden'
     }
 
-    return(
+    if (searchedDay === '') return(
         <section className="container movies">
             {moviesList.map(({poster_path, title, overview, vote_average, backdrop_path, release_date, original_language}) => {
                 let color
@@ -52,6 +52,39 @@ const Movies = ({dates,moviesList,setSelected}) =>{
                                 <p className='movie_description_overview'>{overview}</p>
                             </div>
                         </div>
+                )
+            })}
+        </section>
+    )
+    else return(
+        <section className="container movies">
+            {moviesList.map(({poster_path, title, overview, vote_average, backdrop_path, release_date, original_language}) => {
+                let color
+                if (vote_average >= 7.8 && vote_average <= 10) {
+                    color = {color: 'green'}
+                } else if (vote_average >= 4.5 && vote_average < 7.8) {
+                    color = {color: 'orange'}
+                } else {
+                    color = {color: 'red'}
+                }
+                let found = false;
+                for(let i = 0; i < movies[parseInt(searchedDay)].movies.length; i++) {
+                    if (title === movies[parseInt(searchedDay)].movies[i].title) {
+                        found = true;
+                        break;
+                    }
+                }
+                if (found) return(
+                    <div className='movie' key={title} onMouseEnter={e => {Hover(e, '2px')}}
+                         onMouseLeave={e => {Hover(e, 0);e.currentTarget.lastElementChild.classList.remove('show')}}
+                         onMouseMove={e => {Parallax(e)}}>
+                        <img src={IMG_URL + poster_path} onClick={(e) => {Click(e,{poster_path, title, overview, vote_average, backdrop_path, release_date, original_language})}} alt={title} className='movie_poster'/>
+                        <div className='movie_vote'><span style={color}>{vote_average}</span>/10</div>
+                        <span className="movie_info" onClick={e => {ShowDesc(e)}}>?</span>
+                        <div className='movie_description'>
+                            <p className='movie_description_overview'>{overview}</p>
+                        </div>
+                    </div>
                 )
             })}
         </section>
