@@ -1,7 +1,9 @@
 import {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 const Movies = ({dates,moviesList,setSelected,searchedDay, movies}) =>{
     const IMG_URL = 'https://image.tmdb.org/t/p/w500';
+    const navigate = useNavigate();
 
     const Parallax = (event) => {
         const movieHolderBound = event.currentTarget.getBoundingClientRect();
@@ -28,6 +30,10 @@ const Movies = ({dates,moviesList,setSelected,searchedDay, movies}) =>{
         event.preventDefault();
             setSelected({poster_path, title, overview, vote_average, backdrop_path, release_date, original_language});
             document.body.style.overflow = 'hidden'
+    }
+
+    const Nav = () => {
+        navigate('/room');
     }
 
     if (searchedDay === '') return(
@@ -78,7 +84,7 @@ const Movies = ({dates,moviesList,setSelected,searchedDay, movies}) =>{
                     <div className='movie' key={title} onMouseEnter={e => {Hover(e, '2px')}}
                          onMouseLeave={e => {Hover(e, 0);e.currentTarget.lastElementChild.classList.remove('show')}}
                          onMouseMove={e => {Parallax(e)}}>
-                        <img src={IMG_URL + poster_path} onClick={(e) => {Click(e,{poster_path, title, overview, vote_average, backdrop_path, release_date, original_language})}} alt={title} className='movie_poster'/>
+                        <img src={IMG_URL + poster_path} onClick={Nav} alt={title} className='movie_poster'/>
                         <div className='movie_vote'><span style={color}>{vote_average}</span>/10</div>
                         <span className="movie_info" onClick={e => {ShowDesc(e)}}>?</span>
                         <div className='movie_description'>

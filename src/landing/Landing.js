@@ -33,7 +33,7 @@ const Landing = ({moviesList}) =>{
                 let howMany = 0
                 const hours = []
                 if (movie.vote_average >= 7.8 && movie.vote_average <= 10) {
-                    Draw(howMany, hours, 5, 3);
+                    Draw(howMany, hours, 5, 0);
                 } else if (movie.vote_average >= 4.5 && movie.vote_average < 7.8) {
                     Draw(howMany, hours, 3, 0);
                 } else {
