@@ -1,6 +1,6 @@
 import {useEffect} from "react";
 
-const Modal = ({modal, setModal, selectedMovie}) => {
+const Modal = ({modal, setModal, selectedMovie, movies, dates}) => {
     const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
     useEffect(() => {
@@ -28,8 +28,23 @@ const Modal = ({modal, setModal, selectedMovie}) => {
                     <h2 className='modal_info_title'>Language: '{selectedMovie.original_language.toUpperCase()}'</h2>
                     <h2 className='modal_info_title'>Description: {selectedMovie.overview}</h2>
                 </div>
-                <div>
-                    dates
+                <div className='modal_performance'>
+                    {movies.map((day,index) => {
+                        return(
+                            <div key={index} className='modal_performance_day'>
+                                {dates[day.id]}
+                                    {day.movies.map((movie,index)=>{if (movie.title === selectedMovie.title){
+                                        return (
+                                            <div key={index} className='hours'>
+                                                {movie.hours.map(hours=> (
+                                                    <button key={hours} className='hour'><span>{hours}:00</span></button>
+                                                ))}
+                                            </div>
+                                        )
+                                    }})}
+                            </div>
+                        )
+                    })}
                 </div>
             </section>
         )}

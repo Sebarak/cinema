@@ -5,6 +5,8 @@
   width: 100vw;
   height: 100vh;
   background-color: $main-color;
+  overflow: auto;
+  border-bottom: 1px dashed white;
 
   &_close{
     position: absolute;
@@ -44,10 +46,73 @@
     font-size: 1.1rem;
     font-weight: bold;
     border-bottom: 1px dashed white;
+    padding: 0 10px;
 
     &_title{
       margin: 15px 0;
       line-height: 1.2rem;
+    }
+  }
+
+  &_performance{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 15px 15px 0 15px;
+    color: white;
+    font-family: $font;
+    font-weight: bold;
+
+    &_day{
+      flex: 1 1 100%;
+      font-size: .6rem;
+      padding-bottom: 15px;
+      cursor: default;
+
+
+      .hours{
+        display: flex;
+        flex-wrap: wrap;
+        font-size: 1rem;
+        .hour{
+          padding: 5px 10px;
+          margin: 5px;
+          color: black;
+          background-color: white;
+          transition: transform .2s ease;
+          transform: skewX(-20deg);
+          cursor: pointer;
+          border: none;
+          font-family: $font;
+          font-weight: bold;
+
+          span{
+            display: inline-block;
+            transform: skewX(20deg);
+          }
+
+          &:before{
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 100%;
+            background-color: black;
+            opacity: 0;
+            z-index: -1;
+            transition: all .5s ease;
+          }
+
+          &:hover{
+            transform: scale(1.1) skewX(-20deg);
+            color: white;
+            &:before{
+              left: 0;
+              right: 0;
+              opacity: 1;
+            }
+          }
+        }
+      }
     }
   }
 }

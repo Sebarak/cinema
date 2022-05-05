@@ -53,7 +53,7 @@ const Landing = ({moviesList}) =>{
             <Search />
             <Dates setDate={setDate}/>
             <Movies  dates={dates} moviesList={moviesList} setSelected={setSelected}/>
-            <Modal  modal={isModal} setModal={setModal} selectedMovie={selectedMovie}/>
+            <Modal  modal={isModal} setModal={setModal} selectedMovie={selectedMovie} movies={movies} dates={dates}/>
         </>
     )
 }
